@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import terminal font */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --terminal-bg: #050505;
+  --terminal-bg2: #080808;
+  --terminal-green: #00ff41;
+  --terminal-green-dim: #008F11;
+  --terminal-gray: #4a4a4a;
+  --terminal-red: #ff3333;
+  --terminal-amber: #ffaa00;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', 'Space Mono', monospace;
+  background-color: var(--terminal-bg);
+  color: var(--terminal-green);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--terminal-bg2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--terminal-green-dim);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--terminal-green);
+}
+
+/* Selection color */
+::selection {
+  background: var(--terminal-green-dim);
+  color: var(--terminal-bg);
+}
+
+/* Focus outline */
+:focus-visible {
+  outline: 2px solid var(--terminal-green);
+  outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .animate-blink {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* CRT flicker effect (subtle) */
+@keyframes crt-flicker {
+  0% { opacity: 0.97; }
+  5% { opacity: 0.95; }
+  10% { opacity: 0.98; }
+  15% { opacity: 0.96; }
+  20% { opacity: 0.99; }
+  50% { opacity: 0.98; }
+  80% { opacity: 0.97; }
+  100% { opacity: 0.99; }
+}
+
+.crt-flicker {
+  animation: crt-flicker 0.15s infinite;
+}
+
+/* Text glow effect */
+.text-glow {
+  text-shadow: 0 0 10px rgba(0, 255, 65, 0.5),
+               0 0 20px rgba(0, 255, 65, 0.3),
+               0 0 30px rgba(0, 255, 65, 0.1);
+}
+
+.text-glow-red {
+  text-shadow: 0 0 10px rgba(255, 51, 51, 0.5),
+               0 0 20px rgba(255, 51, 51, 0.3);
+}
+
+.text-glow-amber {
+  text-shadow: 0 0 10px rgba(255, 170, 0, 0.5),
+               0 0 20px rgba(255, 170, 0, 0.3);
+}
